@@ -1,0 +1,11 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t rfalcao/docker-react-udemy -f Dockerfile.dev .
+
+script:
+  - docker run rfalcao/docker-react-udemy -e CI=true npm run test
+  
