@@ -8,4 +8,17 @@ before_install:
 
 script:
   - docker run rfalcao/docker-react-udemy -e CI=true npm run test
-  
+
+#tells travis how to deploy to aws
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "docker-react-udemy"
+  env: "Dockerreactuemy-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-639110431478"
+  bucket_path: "docker-react-udemy"
+  on: 
+    branch: master
+
+  access_key_id: "$aws_access_key"
+  secret_access_key: "$aws_secret_key"
